@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.springboot.comodofrontend.model.TodoGroupIO;
+import com.springboot.comodofrontend.model.TodoUserIO;
 
 @Controller
 public class GroupController {
@@ -39,6 +40,13 @@ public class GroupController {
 
   @GetMapping("/groups/new")
   public String showNewForm(Model model) {
+
+    ResponseEntity<List<TodoUserIO>> responseEntity =
+        restTemplate.exchange("http://localhost:9000/users", HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<TodoUserIO>>() {});
+    List<TodoUserIO> todoUserList = responseEntity.getBody();
+
+    model.addAttribute("todoUserList", todoUserList);
 
     model.addAttribute("group", new TodoGroupIO());
     model.addAttribute("pageTitle", "Add New Group");
@@ -72,6 +80,13 @@ public class GroupController {
 
     model.addAttribute("group", todoGroupIO);
     model.addAttribute("pageTitle", "Edit Group (ID: " + id + ")");
+
+    ResponseEntity<List<TodoUserIO>> responseEntity =
+        restTemplate.exchange("http://localhost:9000/users", HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<TodoUserIO>>() {});
+    List<TodoUserIO> todoUserList = responseEntity.getBody();
+
+    model.addAttribute("todoUserList", todoUserList);
 
     if (todoGroupIO != null) {
       return "group_form";

@@ -28,7 +28,7 @@
     <tr>
       <th>GROUP ID</th>
       <th>GROUP NAME</th>
-      <th>TODO USER ID</th>
+      <th>TODO USER</th>
       <th></th>
     </tr>
   </thead>
@@ -37,7 +37,7 @@
   <tr>
   <td>[[${group.id}]]</td>
   <td>[[${group.name}]]</td>
-  <td>[[${group.todoUserIO.id}]]</td>
+  <td>[[${group.todoUserIO.name}]]</td>
   <td>
      <a class="h5 mr-3" th:href="@{'/groups/edit/' + ${group.id}}">Edit</a>
      <a class="h5"  th:href="@{'/groups/delete/' + ${group.id}}">Delete</a>
