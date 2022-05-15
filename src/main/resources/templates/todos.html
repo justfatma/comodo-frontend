@@ -5,22 +5,29 @@
 <title>Welcome</title>
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
-<body>
+<body style="background-color:#aaf0e3;">
 <div class="container-fluid text-center">
 
-<div><h2> Manage Active Todos </h2></div>
+<div><h2 style="color:#ad67e4;"> Manage Active Todos </h2></div>
 
 <div class="m-3">
 <a class="h4" th:href="@{/todos/new}">Add New Todo</a>
+</div>
+
+<div class="m-3">
+<a class="h5" onclick="back()">Back</a>
 </div>
 
 <div th:if="${message}" class="alert alert-success text-center">
   [[${message}]] 
 </div>
 
+ 
+  
+
 <div>
- <table class="table table-bordered">
-  <thead class="thead-dark">
+ <table class="table table-bordered" style="border-width: 7px; border-color: black;">
+  <thead class="thead-dark" style="background-color:#c899ed;">
     <tr>
       <th>TODO ID</th>
       <th>EXPLANATION</th>
@@ -41,6 +48,7 @@
   <td>[[${todo.dueDate}]]</td>
   <td>[[${todo.status}]]</td>
   <td>
+     <a class="h5 mr-3" th:href="@{'/todos/complete/' + ${todo.id}}">Complete</a>
      <a class="h5 mr-3" th:href="@{'/todos/edit/' + ${todo.id}}">Edit</a>
      <a class="h5"  th:href="@{'/todos/delete/' + ${todo.id}}">Delete</a>
   </td>
@@ -52,8 +60,13 @@
  </table>
 </div>
 
-
-
 </div>
+
+<script type="text/javascript">
+function back(){
+	window.location = "/";
+	
+}
+</script>
 </body>
 </html>

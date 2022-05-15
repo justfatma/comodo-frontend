@@ -5,15 +5,23 @@
 <title>Welcome</title>
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
-<body>
-<div class="container-fluid text-center">
+<body style="background-color:#aaf0e3;">
 
-<h1> Welcome </h1>
+<div class="container-fluid text-center" style="max-width: 600px; margin: 0 auto;">
+</br>
+<h1 style="color:#ad67e4;"><b> Welcome TODO Application </b></h1>
+
+
+</br>
 <a class="h2" th:href="@{/groups}"> Manage Groups</a>
+</br>
 </br>
 <a class="h2" th:href="@{/todos}"> Manage Active Todos</a>
 </br>
+</br>
 <a class="h2" th:href="@{/completed-todos}"> Manage Completed Todos</a>
+
+
 </div>
 </body>
 </html>

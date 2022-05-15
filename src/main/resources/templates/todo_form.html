@@ -5,7 +5,7 @@
 <title>[[${pagetitle}]]</title>
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
-<body>
+<body style="background-color:#aaf0e3;">
 <div class="container-fluid text-center">
 
 <div class="text-center"><h2> [[${pagetitle}]] </h2> </div>
@@ -13,7 +13,7 @@
 <form th:action="@{/todos/save}" method="post" th:object="${todo}" style="max-width: 500px; margin: 0 auto;">
 
    <input type="hidden" th:field="*{id}"/>
-   <div class="border border-secondary rounded p-3">
+   <div class="border border-secondary rounded p-3" style="background-color:#dabbf3;">
    
      <div class="form-group row">
         <label class="col-sm-4 col-form-label">Explanation</label>

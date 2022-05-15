@@ -99,6 +99,21 @@ public class TodoController {
     return "redirect:/todos";
   }
 
+  @GetMapping("/todos/complete/{id}")
+  public String completedTodo(@PathVariable("id") Long id, RedirectAttributes ra) {
+
+
+    String entityUrl = "http://localhost:9002/donetodo/" + id;
+
+    ResponseEntity<TodoIO> completedTodo =
+        restTemplate.exchange(entityUrl, HttpMethod.PUT, null, TodoIO.class);
+
+    ra.addFlashAttribute("message",
+        "The todo is completed. You can see it on the completed todo page.");
+
+    return "redirect:/todos";
+  }
+
   // Completed Todo Methods
 
   @GetMapping("/completed-todos")
