@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+
+<div><h2> Manage Completed Todos </h2></div>
+
+
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]] 
+</div>
+
+<div>
+ <table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>TODO ID</th>
+      <th>EXPLANATION</th>
+      <th>PRIORITY</th>
+      <th>GROUP</th>
+      <th>DUE DATE</th>
+      <th>STATUS</th>
+      <th></th>
+    </tr>
+  </thead>
+ <tbody>
+ <th:block th:each="todo: ${completedTodoList}">
+  <tr>
+  <td>[[${todo.id}]]</td>
+  <td>[[${todo.explanation}]]</td>
+  <td>[[${todo.priority}]]</td>
+  <td>[[${todo.todoGroupIO.name}]]</td>
+  <td>[[${todo.dueDate}]]</td>
+  <td>[[${todo.status}]]</td>
+  <td>
+     <a class="h5 mr-3" th:href="@{'/completed-todos/activate/' + ${todo.id}}">Activate</a>
+     <a class="h5"  th:href="@{'/completed-todos/delete/' + ${todo.id}}">Delete</a>
+  </td>
+  </tr>
+ 
+ </th:block>
+ 
+ </tbody>
+ </table>
+</div>
+
+
+
+</div>
+</body>
+</html>

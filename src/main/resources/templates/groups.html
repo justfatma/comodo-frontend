@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+
+<div><h2> Manage Groups </h2></div>
+
+<div class="m-3">
+<a class="h4" th:href="@{/groups/new}">Add New Group</a>
+</div>
+
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]] 
+</div>
+
+<div>
+ <table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>GROUP ID</th>
+      <th>GROUP NAME</th>
+      <th>TODO USER ID</th>
+      <th></th>
+    </tr>
+  </thead>
+ <tbody>
+ <th:block th:each="group: ${groupList}">
+  <tr>
+  <td>[[${group.id}]]</td>
+  <td>[[${group.name}]]</td>
+  <td>[[${group.todoUserIO.id}]]</td>
+  <td>
+     <a class="h5 mr-3" th:href="@{'/groups/edit/' + ${group.id}}">Edit</a>
+     <a class="h5"  th:href="@{'/groups/delete/' + ${group.id}}">Delete</a>
+  </td>
+  </tr>
+ 
+ </th:block>
+ 
+ </tbody>
+ </table>
+</div>
+
+
+
+</div>
+</body>
+</html>
