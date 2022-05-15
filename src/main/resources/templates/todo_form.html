@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>[[${pagetitle}]]</title>
+<title>[[${pageTitle}]]</title>
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body style="background-color:#aaf0e3;">
 <div class="container-fluid text-center">
 
-<div class="text-center"><h2> [[${pagetitle}]] </h2> </div>
+<div class="text-center"><h2 style="color:#ad67e4;"> [[${pageTitle}]] </h2> </div>
 
 <form th:action="@{/todos/save}" method="post" th:object="${todo}" style="max-width: 500px; margin: 0 auto;">
 
@@ -25,21 +25,29 @@
      <div class="form-group row">
         <label class="col-sm-4 col-form-label">Priority</label>
         <div class="col-sm-8">
-           <input th:field="*{priority}" class="form-control" required minlength="1"/>
+           <select th:field="*{priority}" class="form-control">
+			    <option th:value="'HIGH'" th:text="HIGH"></option>
+			    <option th:value="'MEDIUM'" th:text="MEDIUM"></option>
+			    <option th:value="'LOW'" th:text="LOW"></option>
+			</select>
         </div>
      </div>
      </br>
           <div class="form-group row">
         <label class="col-sm-4 col-form-label">Group</label>
         <div class="col-sm-8">
-           <input type="text" th:field="*{todoGroupIO.name}" class="form-control" required minlength="3" maxlength="100"/>
+                    
+          <select class="form-control" id="dropDownList" th:field="*{todoGroupIO.id}" required>
+		    <option th:each="todoGroupIO : ${todoGroupList}" th:value="${todoGroupIO.id}" th:text="${todoGroupIO.name}"></option>
+		  </select>  
+		 		
         </div>
      </div>
      </br>
      <div class="form-group row">
         <label class="col-sm-4 col-form-label">Due Date </label>
         <div class="col-sm-8">
-           <input type="date" th:field="*{dueDate}" class="form-control" />
+           <input type="date" th:field="*{dueDate}" class="form-control" required />
         </div>
      </div>
      </br>

@@ -42,6 +42,14 @@ public class TodoController {
   @GetMapping("/todos/new")
   public String showNewForm(Model model) {
 
+    ResponseEntity<List<TodoGroupIO>> responseEntity =
+        restTemplate.exchange("http://localhost:9001/groups", HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<TodoGroupIO>>() {});
+    List<TodoGroupIO> todoGroupList = responseEntity.getBody();
+
+    model.addAttribute("todoGroupList", todoGroupList);
+
+
     model.addAttribute("todo", new TodoIO());
     model.addAttribute("pageTitle", "Add New Todo");
     return "todo_form";
@@ -50,10 +58,6 @@ public class TodoController {
 
   @PostMapping("/todos/save")
   public String saveTodo(TodoIO todoIO, RedirectAttributes ra) {
-
-    TodoGroupIO todoGroupIO = new TodoGroupIO();
-    todoGroupIO.setId(10002L);
-    todoIO.setTodoGroupIO(todoGroupIO);
 
     todoIO.setStatus(TodoStatus.ACTIVE);
 
@@ -79,6 +83,13 @@ public class TodoController {
 
     model.addAttribute("todo", todoIO);
     model.addAttribute("pageTitle", "Edit Todo (ID: " + id + ")");
+
+    ResponseEntity<List<TodoGroupIO>> responseEntity =
+        restTemplate.exchange("http://localhost:9001/groups", HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<TodoGroupIO>>() {});
+    List<TodoGroupIO> todoGroupList = responseEntity.getBody();
+
+    model.addAttribute("todoGroupList", todoGroupList);
 
     if (todoIO != null) {
       return "todo_form";

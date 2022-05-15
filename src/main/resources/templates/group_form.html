@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>[[${pagetitle}]]</title>
+<title>[[${pageTitle}]]</title>
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body style="background-color:#aaf0e3;">
 <div class="container-fluid text-center">
 
-<div class="text-center"><h2> [[${pagetitle}]] </h2> </div>
+<div class="text-center"><h2 style="color:#ad67e4;"> [[${pageTitle}]] </h2> </div>
 
 <form th:action="@{/groups/save}" method="post" th:object="${group}" style="max-width: 500px; margin: 0 auto;">
 
